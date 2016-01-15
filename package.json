@@ -1,0 +1,39 @@
+{
+  "name": "unexpected-set",
+  "version": "0.0.0",
+  "description": "Add support to Unexpected for testing Set instances",
+  "main": "lib/unexpected-set.js",
+  "scripts": {
+    "lint": "jshint .",
+    "test": "mocha && npm run lint",
+    "travis": "npm test && npm run coverage && (<coverage/lcov.info coveralls || true)",
+    "coverage": "NODE_ENV=development istanbul cover _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unexpectedjs/unexpected-set.git"
+  },
+  "keywords": [
+    "test",
+    "assertion",
+    "Unexpected",
+    "Set",
+    "array"
+  ],
+  "author": "Andreas Lind <andreas@one.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/unexpectedjs/unexpected-set/issues"
+  },
+  "homepage": "https://github.com/unexpectedjs/unexpected-set#readme",
+  "devDependencies": {
+    "coveralls": "2.11.6",
+    "istanbul": "0.4.2",
+    "jshint": "2.9.1",
+    "mocha": "2.3.4",
+    "unexpected": "10.5.1"
+  },
+  "dependencies": {
+    "es6-set": "0.1.3"
+  }
+}
