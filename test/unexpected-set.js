@@ -3,7 +3,37 @@ require('es6-set/implement');
 
 var expect = require('unexpected').clone().use(require('../lib/unexpected-set'));
 
+expect.addAssertion('<any> to inspect as <string>', function (expect, subject, value) {
+    expect(expect.inspect(subject).toString(), 'to equal', value);
+});
+
+expect.addAssertion('<array> to produce a diff of <string>', function (expect, subject, value) {
+    expect.errorMode = 'bubble';
+    expect(expect.diff(
+        subject[0],
+        subject[1]
+    ).diff.toString(), 'to equal', value);
+});
+
 describe('unexpected-set', function () {
+    describe('Set type', function () {
+        it('should inspect a Set instance correctly', function () {
+            expect(new Set([1, 2]), 'to inspect as', 'Set([ 1, 2 ])');
+        });
+
+        it('should diff two Set instances correctly', function () {
+            expect(
+                [new Set([1, 2]), new Set([2, 3])],
+                'to produce a diff of',
+                'Set([\n' +
+                '  1, // should be removed\n' +
+                '  2\n' +
+                '  // missing 3\n' +
+                '])'
+            );
+        });
+    });
+
     describe('with set semantics assertion', function () {
         it('should succeed', function () {
             expect([1, 2, 3], 'with set semantics to satisfy', [3, 1, 2]);
