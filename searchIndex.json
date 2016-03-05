@@ -1,6 +1,14 @@
 [
   {
+    "label": "to contain (Set)",
+    "url": "/assertions/Set/to-contain/"
+  },
+  {
     "label": "to satisfy (Set)",
     "url": "/assertions/Set/to-satisfy/"
+  },
+  {
+    "label": "with set semantics (array-like)",
+    "url": "/assertions/array-like/with-set-semantics/"
   }
 ]
