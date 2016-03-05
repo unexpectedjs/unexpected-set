@@ -34,6 +34,47 @@ describe('unexpected-set', function () {
         });
     });
 
+    describe('to contain assertion', function () {
+        it('should succeed', function () {
+            expect(new Set([1, 2, 3]), 'to contain', 3);
+        });
+
+        it('should fail with a diff', function () {
+            expect(function () {
+                expect(new Set([1, 2, 3]), 'to contain', 4);
+            }, 'to throw',
+                'expected Set([ 1, 2, 3 ]) to contain 4\n' +
+                '\n' +
+                'Set([\n' +
+                '  1,\n' +
+                '  2,\n' +
+                '  3\n' +
+                '  // missing 4\n' +
+                '])'
+            );
+        });
+
+        describe('with the not flag', function () {
+            it('should succeed', function () {
+                expect(new Set([1, 2, 3]), 'not to contain', 4);
+            });
+
+            it('should fail with a diff', function () {
+                expect(function () {
+                    expect(new Set([1, 2, 3]), 'not to contain', 2);
+                }, 'to throw',
+                    'expected Set([ 1, 2, 3 ]) not to contain 2\n' +
+                    '\n' +
+                    'Set([\n' +
+                    '  1,\n' +
+                    '  2, // should be removed\n' +
+                    '  3\n' +
+                    '])'
+                );
+            });
+        });
+    });
+
     describe('with set semantics assertion', function () {
         it('should succeed', function () {
             expect([1, 2, 3], 'with set semantics to satisfy', [3, 1, 2]);
