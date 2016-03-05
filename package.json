@@ -9,7 +9,8 @@
     "travis": "npm test && npm run coverage && (<coverage/lcov.info coveralls || true)",
     "coverage": "NODE_ENV=development istanbul cover _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html",
     "generate-site": "generate-site --require ./bootstrap-unexpected-markdown.js",
-    "update-examples": "generate-site --require ./bootstrap-unexpected-markdown.js --update-examples"
+    "update-examples": "generate-site --require ./bootstrap-unexpected-markdown.js --update-examples",
+    "deploy-site": "deploy-site.sh"
   },
   "repository": {
     "type": "git",
