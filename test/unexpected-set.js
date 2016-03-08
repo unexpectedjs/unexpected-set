@@ -194,4 +194,57 @@ describe('unexpected-set', function () {
             });
         });
     });
+
+    describe('with a subtype that disables indentation', function () {
+        var clonedExpect = expect.clone();
+
+        clonedExpect.addType({
+            base: 'Set',
+            name: 'bogusSet',
+            identify: function (obj) {
+                return obj && obj.constructor && obj.constructor.name === 'Set';
+            },
+            prefix: function (output) {
+                return output;
+            },
+            suffix: function (output) {
+                return output;
+            },
+            indent: false
+        });
+
+        it('should not render the indentation when an instance is inspected in a multi-line context', function () {
+            expect(
+                clonedExpect.inspect(new Set([
+                    'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                    'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+                ])).toString(),
+                'to equal',
+                "'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',\n" +
+                "'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'"
+            );
+        });
+
+        it('should not render the indentation when an instance is diffed', function () {
+            expect(
+                clonedExpect.diff(new Set(['a', 'b']), new Set(['b', 'c'])).toString(),
+                'to equal',
+                "'a', // should be removed\n" +
+                "'b'\n" +
+                "// missing 'c'"
+            );
+        });
+
+        it('should not render the indentation when an instance participates in a "to satisfy" diff', function () {
+            expect(function () {
+                clonedExpect(new Set(['aaa', 'bbb']), 'to satisfy', new Set(['foo']));
+            }, 'to throw',
+                "expected 'aaa', 'bbb' to satisfy 'foo'\n" +
+                "\n" +
+                "'aaa',\n" +
+                "'bbb'\n" +
+                "// missing 'foo'"
+            );
+        });
+    });
 });
