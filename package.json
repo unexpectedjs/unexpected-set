@@ -4,7 +4,7 @@
   "description": "Add support to Unexpected for testing Set instances",
   "main": "lib/unexpected-set.js",
   "scripts": {
-    "lint": "jshint .",
+    "lint": "eslint .",
     "test": "mocha && npm run lint && mocha documentation",
     "travis": "npm test && npm run coverage && (<coverage/lcov.info coveralls || true)",
     "coverage": "NODE_ENV=development istanbul cover _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html",
@@ -31,8 +31,9 @@
   "homepage": "https://unexpected.js.org/unexpected-set",
   "devDependencies": {
     "coveralls": "2.11.8",
+    "eslint": "2.7.0",
+    "eslint-config-onelint": "1.0.2",
     "istanbul": "0.4.2",
-    "jshint": "2.9.1",
     "mocha": "2.4.5",
     "unexpected": "10.10.0",
     "unexpected-documentation-site-generator": "^4.0.0",
