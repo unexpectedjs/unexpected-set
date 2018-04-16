@@ -43,7 +43,7 @@ describe('unexpected-set', function () {
             expect(function () {
                 expect(new Set([1, 2, 3]), 'to contain', 4);
             }, 'to throw',
-                'expected Set([ 1, 2, 3 ]) to contain 4\n' +
+            'expected Set([ 1, 2, 3 ]) to contain 4\n' +
                 '\n' +
                 'Set([\n' +
                 '  1,\n' +
@@ -63,7 +63,7 @@ describe('unexpected-set', function () {
                 expect(function () {
                     expect(new Set([1, 2, 3]), 'not to contain', 2);
                 }, 'to throw',
-                    'expected Set([ 1, 2, 3 ]) not to contain 2\n' +
+                'expected Set([ 1, 2, 3 ]) not to contain 2\n' +
                     '\n' +
                     'Set([\n' +
                     '  1,\n' +
@@ -84,7 +84,7 @@ describe('unexpected-set', function () {
             expect(function () {
                 expect([1, 2, 3], 'with set semantics to satisfy', [1, 2, 4]);
             }, 'to throw',
-                'expected [ 1, 2, 3 ] with set semantics to satisfy [ 1, 2, 4 ]\n' +
+            'expected [ 1, 2, 3 ] with set semantics to satisfy [ 1, 2, 4 ]\n' +
                 '\n' +
                 'Set([\n' +
                 '  1,\n' +
@@ -105,13 +105,13 @@ describe('unexpected-set', function () {
             expect(function () {
                 expect(new Set([1, 2, 'foo']), 'to have items satisfying to be a number');
             }, 'to throw',
-                "expected Set([ 1, 2, 'foo' ]) to have items satisfying to be a number\n" +
-                "\n" +
-                "Set([\n" +
-                "  1,\n" +
-                "  2,\n" +
+            "expected Set([ 1, 2, 'foo' ]) to have items satisfying to be a number\n" +
+                '\n' +
+                'Set([\n' +
+                '  1,\n' +
+                '  2,\n' +
                 "  'foo' // should be a number\n" +
-                "])"
+                '])'
             );
         });
 
@@ -133,7 +133,7 @@ describe('unexpected-set', function () {
                     expect(function () {
                         expect(new Set([1, 2]), 'to satisfy', new Set([3]));
                     }, 'to throw',
-                        'expected Set([ 1, 2 ]) to satisfy Set([ 3 ])\n' +
+                    'expected Set([ 1, 2 ]) to satisfy Set([ 3 ])\n' +
                         '\n' +
                         'Set([\n' +
                         '  1,\n' +
@@ -156,7 +156,7 @@ describe('unexpected-set', function () {
                         expect(function () {
                             expect(new Set([1, 2]), 'to exhaustively satisfy', [1]);
                         }, 'to throw',
-                            'expected Set([ 1, 2 ]) to exhaustively satisfy [ 1 ]\n' +
+                        'expected Set([ 1, 2 ]) to exhaustively satisfy [ 1 ]\n' +
                             '\n' +
                             'Set([\n' +
                             '  1,\n' +
@@ -171,7 +171,7 @@ describe('unexpected-set', function () {
                 expect(function () {
                     expect(new Set([1]), 'to satisfy', [1, 2]);
                 }, 'to throw',
-                    'expected Set([ 1 ]) to satisfy [ 1, 2 ]\n' +
+                'expected Set([ 1 ]) to satisfy [ 1, 2 ]\n' +
                     '\n' +
                     'Set([\n' +
                     '  1\n' +
@@ -184,12 +184,12 @@ describe('unexpected-set', function () {
                 expect(function () {
                     expect(new Set([1]), 'to satisfy', [1, expect.it('to equal', 2)]);
                 }, 'to throw',
-                    "expected Set([ 1 ]) to satisfy [ 1, expect.it('to equal', 2) ]\n" +
-                    "\n" +
-                    "Set([\n" +
-                    "  1\n" +
-                    "  // missing: should equal 2\n" +
-                    "])"
+                "expected Set([ 1 ]) to satisfy [ 1, expect.it('to equal', 2) ]\n" +
+                    '\n' +
+                    'Set([\n' +
+                    '  1\n' +
+                    '  // missing: should equal 2\n' +
+                    '])'
                 );
             });
         });
@@ -239,8 +239,8 @@ describe('unexpected-set', function () {
             expect(function () {
                 clonedExpect(new Set(['aaa', 'bbb']), 'to satisfy', new Set(['foo']));
             }, 'to throw',
-                "expected 'aaa', 'bbb' to satisfy 'foo'\n" +
-                "\n" +
+            "expected 'aaa', 'bbb' to satisfy 'foo'\n" +
+                '\n' +
                 "'aaa',\n" +
                 "'bbb'\n" +
                 "// missing 'foo'"
