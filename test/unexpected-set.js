@@ -2,6 +2,7 @@
 require('es6-set/implement');
 
 var expect = require('unexpected').clone().use(require('../lib/unexpected-set'));
+expect.output.preferredWidth = 80;
 
 expect.addAssertion('<any> to inspect as <string>', function (expect, subject, value) {
     expect(expect.inspect(subject).toString(), 'to equal', value);
@@ -12,7 +13,7 @@ expect.addAssertion('<array> to produce a diff of <string>', function (expect, s
     expect(expect.diff(
         subject[0],
         subject[1]
-    ).diff.toString(), 'to equal', value);
+    ).toString(), 'to equal', value);
 });
 
 describe('unexpected-set', function () {

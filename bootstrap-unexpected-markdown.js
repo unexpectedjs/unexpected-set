@@ -1,5 +1,5 @@
 /*global unexpected:true*/
-unexpected = require('unexpected');
+unexpected = require('unexpected').clone();
 unexpected.use(require('./lib/unexpected-set'));
 unexpected.output.preferredWidth = 80;
 
