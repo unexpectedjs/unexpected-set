@@ -5,8 +5,8 @@
   "main": "lib/unexpected-set.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha && npm run lint && mocha documentation",
-    "ci": "npm test && npm run coverage && (<coverage/lcov.info coveralls || true)",
+    "test": "mocha && mocha documentation",
+    "ci": "npm test && npm run lint && npm run coverage && (<coverage/lcov.info coveralls || true)",
     "coverage": "NODE_ENV=development istanbul cover _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html",
     "generate-site": "generate-site --require ./bootstrap-unexpected-markdown.js",
     "update-examples": "generate-site --require ./bootstrap-unexpected-markdown.js --update-examples",
