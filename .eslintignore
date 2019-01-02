@@ -1,3 +1,5 @@
-testdata
-node_modules
-coverage
+/testdata/
+/node_modules/
+/coverage/
+/.nyc_output/
+/site-build/
