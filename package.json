@@ -36,7 +36,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "mocha": "^5.1.0",
     "nyc": "^13.1.0",
-    "prettier": "^1.15.3",
+    "prettier": "~1.15.3",
     "unexpected": "^11.0.0-4",
     "unexpected-documentation-site-generator": "^5.0.0",
     "unexpected-markdown": "^2.0.0"
