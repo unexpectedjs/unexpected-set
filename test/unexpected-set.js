@@ -1,4 +1,3 @@
-/*global describe, it, Set*/
 require('es6-set/implement');
 
 var expect = require('unexpected')
