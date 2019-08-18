@@ -39,6 +39,33 @@ describe('unexpected-set', function() {
           '])'
       );
     });
+
+    describe('equality', function() {
+      it('should consider two empty sets equal', function() {
+        expect(new Set(), 'to equal', new Set());
+      });
+
+      it('should consider two sets with the same item equal', function() {
+        expect(new Set(['abc']), 'to equal', new Set(['abc']));
+      });
+
+      it('should consider two sets with a different item unequal', function() {
+        expect(new Set(['abc']), 'not to equal', new Set(['def']));
+      });
+
+      it('should consider two sets with a common and a different item unequal', function() {
+        expect(
+          new Set(['abc', 'def']),
+          'not to equal',
+          new Set(['abc', 'ghi'])
+        );
+      });
+
+      it('should consider two sets with a different number of items unequal', function() {
+        expect(new Set(['abc']), 'not to equal', new Set(['abc', 'def']));
+        expect(new Set(['abc', 'def']), 'not to equal', new Set(['abc']));
+      });
+    });
   });
 
   describe('to contain assertion', function() {
