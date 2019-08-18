@@ -5,14 +5,20 @@ const expect = require('unexpected')
   .use(require('../lib/unexpected-set'));
 expect.output.preferredWidth = 80;
 
-expect.addAssertion('<any> to inspect as <string>', (expect, subject, value) => {
-  expect(expect.inspect(subject).toString(), 'to equal', value);
-});
+expect.addAssertion(
+  '<any> to inspect as <string>',
+  (expect, subject, value) => {
+    expect(expect.inspect(subject).toString(), 'to equal', value);
+  }
+);
 
-expect.addAssertion('<array> to produce a diff of <string>', (expect, subject, value) => {
-  expect.errorMode = 'bubble';
-  expect(expect.diff(subject[0], subject[1]).toString(), 'to equal', value);
-});
+expect.addAssertion(
+  '<array> to produce a diff of <string>',
+  (expect, subject, value) => {
+    expect.errorMode = 'bubble';
+    expect(expect.diff(subject[0], subject[1]).toString(), 'to equal', value);
+  }
+);
 
 describe('unexpected-set', () => {
   describe('Set type', () => {
