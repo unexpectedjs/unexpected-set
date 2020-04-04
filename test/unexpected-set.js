@@ -261,7 +261,7 @@ describe('unexpected-set', () => {
       suffix(output) {
         return output;
       },
-      indent: false
+      indent: false,
     });
 
     it('should not render the indentation when an instance is inspected in a multi-line context', () => {
@@ -270,7 +270,7 @@ describe('unexpected-set', () => {
           .inspect(
             new Set([
               'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-              'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+              'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
             ])
           )
           .toString(),

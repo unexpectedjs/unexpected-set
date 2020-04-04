@@ -3,9 +3,9 @@ spec.
 
 ```js
 expect(new Set([1, 2, 3]), 'to satisfy', [
-    1,
-    expect.it('to be less than or equal to', 1),
-    expect.it('to be greater than', 10)
+  1,
+  expect.it('to be less than or equal to', 1),
+  expect.it('to be greater than', 10),
 ]);
 ```
 
