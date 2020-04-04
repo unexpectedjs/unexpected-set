@@ -4,7 +4,7 @@
   "description": "Add support to Unexpected for testing Set instances",
   "main": "lib/unexpected-set.js",
   "scripts": {
-    "lint": "eslint . && prettier --check '**/*.js'",
+    "lint": "eslint . && prettier --check '**/*.{js,md}'",
     "test": "mocha test/*.js `find documentation -name '*.md'`",
     "ci": "npm test && npm run lint && npm run coverage",
     "coverage": "NODE_ENV=development nyc --reporter=lcov --reporter=text --all -- npm test && echo google-chrome coverage/lcov-report/index.html",
