@@ -113,21 +113,25 @@ describe('unexpected-set', () => {
 
   describe('with set semantics assertion', () => {
     it('should succeed', () => {
-      expect([1, 2, 3], 'with set semantics to satisfy', [3, 1, 2]);
+      expect([1, 2, 3], 'with set semantics to satisfy', new Set([3, 1, 2]));
     });
 
     it('should fail with a diff', () => {
       expect(
         () => {
-          expect([1, 2, 3], 'with set semantics to satisfy', [1, 2, 4]);
+          expect(
+            [1, 2, 3],
+            'with set semantics to satisfy',
+            new Set([1, 2, 4])
+          );
         },
         'to throw',
-        'expected [ 1, 2, 3 ] with set semantics to satisfy [ 1, 2, 4 ]\n' +
+        'expected [ 1, 2, 3 ] with set semantics to satisfy Set([ 1, 2, 4 ])\n' +
           '\n' +
           'Set([\n' +
           '  1,\n' +
           '  2,\n' +
-          '  3\n' +
+          '  3 // should be removed\n' +
           '  // missing 4\n' +
           '])'
       );
@@ -165,11 +169,44 @@ describe('unexpected-set', () => {
     });
   });
 
+  describe('to have elements satisfying assertion', () => {
+    it('should succeed', () => {
+      expect(new Set([1, 2, 3]), 'to have elements satisfying', [1, 2, 3]);
+    });
+
+    it('should fail with a diff', () => {
+      expect(
+        () => {
+          expect(new Set([1, 2, 'foo']), 'to have elements satisfying', [
+            1,
+            'foo',
+          ]);
+        },
+        'to throw',
+        "expected Set([ 1, 2, 'foo' ]) to have elements satisfying [ 1, 'foo' ]\n" +
+          '\n' +
+          'Set([\n' +
+          '  1,\n' +
+          '  2, // should be removed\n' +
+          "  'foo'\n" +
+          '])'
+      );
+    });
+  });
+
   describe('to satisfy assertion', () => {
     describe('with a Set instance', () => {
       describe('against another Set instance', () => {
         it('should succeed', () => {
           expect(new Set([1, 2]), 'to satisfy', new Set([2, 1]));
+        });
+
+        it('should succeed with partial object matches', () => {
+          expect(
+            new Set([{ foo: true, bar: 1 }]),
+            'to satisfy',
+            new Set([{ foo: true }])
+          );
         });
 
         it('should fail with a diff', () => {
@@ -181,34 +218,34 @@ describe('unexpected-set', () => {
             'expected Set([ 1, 2 ]) to satisfy Set([ 3 ])\n' +
               '\n' +
               'Set([\n' +
-              '  1,\n' +
-              '  2\n' +
+              '  1, // should be removed\n' +
+              '  2 // should be removed\n' +
               '  // missing 3\n' +
               '])'
           );
         });
 
-        it('should accept extraneous items', () => {
-          expect(new Set([1, 2]), 'to satisfy', [1]);
+        it('should not accept extraneous items', () => {
+          expect(
+            () => {
+              expect(new Set([1, 2]), 'to exhaustively satisfy', new Set([1]));
+            },
+            'to throw',
+            'expected Set([ 1, 2 ]) to exhaustively satisfy Set([ 1 ])\n' +
+              '\n' +
+              'Set([\n' +
+              '  1,\n' +
+              '  2 // should be removed\n' +
+              '])'
+          );
         });
 
         describe('with the exhaustively flag', () => {
           it('should succeed', () => {
-            expect(new Set([1, 2]), 'to exhaustively satisfy', [1, 2]);
-          });
-
-          it('should not accept extraneous items', () => {
             expect(
-              () => {
-                expect(new Set([1, 2]), 'to exhaustively satisfy', [1]);
-              },
-              'to throw',
-              'expected Set([ 1, 2 ]) to exhaustively satisfy [ 1 ]\n' +
-                '\n' +
-                'Set([\n' +
-                '  1,\n' +
-                '  2 // should be removed\n' +
-                '])'
+              new Set([{ foo: true, bar: 1 }]),
+              'to exhaustively satisfy',
+              new Set([{ foo: true, bar: 1 }])
             );
           });
         });
@@ -217,10 +254,10 @@ describe('unexpected-set', () => {
       it('should point out missing items', () => {
         expect(
           () => {
-            expect(new Set([1]), 'to satisfy', [1, 2]);
+            expect(new Set([1]), 'to satisfy', new Set([1, 2]));
           },
           'to throw',
-          'expected Set([ 1 ]) to satisfy [ 1, 2 ]\n' +
+          'expected Set([ 1 ]) to satisfy Set([ 1, 2 ])\n' +
             '\n' +
             'Set([\n' +
             '  1\n' +
@@ -232,10 +269,14 @@ describe('unexpected-set', () => {
       it('should point out items that were supposed to satisfy an expect.it', () => {
         expect(
           () => {
-            expect(new Set([1]), 'to satisfy', [1, expect.it('to equal', 2)]);
+            expect(
+              new Set([1]),
+              'to satisfy',
+              new Set([1, expect.it('to equal', 2)])
+            );
           },
           'to throw',
-          "expected Set([ 1 ]) to satisfy [ 1, expect.it('to equal', 2) ]\n" +
+          "expected Set([ 1 ]) to satisfy Set([ 1, expect.it('to equal', 2) ])\n" +
             '\n' +
             'Set([\n' +
             '  1\n' +
@@ -296,8 +337,8 @@ describe('unexpected-set', () => {
         'to throw',
         "expected 'aaa', 'bbb' to satisfy 'foo'\n" +
           '\n' +
-          "'aaa',\n" +
-          "'bbb'\n" +
+          "'aaa', // should be removed\n" +
+          "'bbb' // should be removed\n" +
           "// missing 'foo'"
       );
     });
