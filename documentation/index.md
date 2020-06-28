@@ -13,11 +13,11 @@ Add support to [Unexpected](http://unexpected.js.org) for testing [Set](https://
 [![Dependency Status](https://david-dm.org/unexpectedjs/unexpected-set.svg)](https://david-dm.org/unexpectedjs/unexpected-set)
 
 ```js
-expect(new Set([1, 2, 3]), 'to satisfy', [3, 4]);
+expect(new Set([1, 2, 3]), 'to satisfy', new Set([1, 2, 3, 4]));
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) to satisfy [ 3, 4 ]
+expected Set([ 1, 2, 3 ]) to satisfy Set([ 1, 2, 3, 4 ])
 
 Set([
   1,
