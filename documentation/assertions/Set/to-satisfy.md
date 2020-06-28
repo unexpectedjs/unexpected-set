@@ -2,11 +2,15 @@ Asserts that a Set instance has at least one element satisfying each given
 spec.
 
 ```js
-expect(new Set([1, 2, 3]), 'to satisfy', new Set([
-  1,
-  expect.it('to be less than or equal to', 1),
-  expect.it('to be greater than', 10),
-]));
+expect(
+  new Set([1, 2, 3]),
+  'to satisfy',
+  new Set([
+    1,
+    expect.it('to be less than or equal to', 1),
+    expect.it('to be greater than', 10),
+  ])
+);
 ```
 
 ```output
