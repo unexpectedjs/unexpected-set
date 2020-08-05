@@ -29,18 +29,22 @@ Set([
 ])
 ```
 
-If the subject should not contain additional elements, use the `exhaustively`
-flag:
+The exact number of elements in a Set must always be matched. However, nested
+objects are, be default, compared using "satisfy" semantics which allow missing
+properties. In order to enforce that all properties are present, the `exhaustively`
+flag can be used:
 
 ```js
-expect(new Set([1, 2]), 'to exhaustively satisfy', new Set([2]));
+expect(new Set([1, { foo: true, bar: false }]), 'to exhaustively satisfy', new Set([1, { foo: true }]));
 ```
 
 ```output
-expected Set([ 1, 2 ]) to exhaustively satisfy Set([ 2 ])
+expected Set([ 1, { foo: true, bar: false } ])
+to exhaustively satisfy Set([ 1, { foo: true } ])
 
 Set([
-  1, // should be removed
-  2
+  1,
+  { foo: true, bar: false } // should be removed
+  // missing { foo: true }
 ])
 ```
