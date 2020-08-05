@@ -35,7 +35,11 @@ properties. In order to enforce that all properties are present, the `exhaustive
 flag can be used:
 
 ```js
-expect(new Set([1, { foo: true, bar: false }]), 'to exhaustively satisfy', new Set([1, { foo: true }]));
+expect(
+  new Set([1, { foo: true, bar: false }]),
+  'to exhaustively satisfy',
+  new Set([1, { foo: true }])
+);
 ```
 
 ```output
