@@ -8,9 +8,9 @@ expect(new Set([1, 2, 3]), 'to have items satisfying', [1, { foo: 'bar' }, 3]);
 expected Set([ 1, 2, 3 ]) to have items satisfying [ 1, { foo: 'bar' }, 3 ]
 
 Set([
-  1,
-  2, // should equal { foo: 'bar' }
-  3
+  1, // should equal [ 1, { foo: 'bar' }, 3 ]
+  2, // should equal [ 1, { foo: 'bar' }, 3 ]
+  3 // should equal [ 1, { foo: 'bar' }, 3 ]
 ])
 ```
 
@@ -38,20 +38,18 @@ properties. In order to enforce that all properties are present, the `exhaustive
 flag can be used:
 
 ```js
-expect(
-  new Set([{ foo: true, bar: true }, { baz: false }]),
-  'to exhaustively satisfy',
-  new Set([{ foo: true }, { baz: false }])
-);
+expect(new Set([[{ foo: true, bar: true }], [1]]), 'to have items satisfying', [
+  expect.it('to be an object'),
+]);
 ```
 
 ```output
-expected Set([ { foo: true, bar: true }, { baz: false } ])
-to exhaustively satisfy Set([ { foo: true }, { baz: false } ])
+expected Set to have items satisfying [ expect.it('to be an object') ]
 
 Set([
-  { foo: true, bar: true }, // should be removed
-  { baz: false }
-  // missing { foo: true }
+  [ { foo: true, bar: true } ],
+  [
+    1 // should be an object
+  ]
 ])
 ```

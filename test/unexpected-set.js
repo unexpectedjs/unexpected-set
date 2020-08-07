@@ -140,24 +140,32 @@ describe('unexpected-set', () => {
 
   describe('to have items satisfying assertion', () => {
     it('should succeed', () => {
-      expect(new Set([1, 2, 3]), 'to have items satisfying', [1, 2, 3]);
+      expect(new Set([[1], [2], [3]]), 'to have items satisfying', [
+        expect.it('to be a number').and('to be greater than', 0),
+      ]);
     });
 
     it('should fail with a diff', () => {
       expect(
         () => {
-          expect(new Set([1, 2, 'foo']), 'to have items satisfying', [
-            1,
-            'foo',
+          expect(new Set([[1], [2], ['foo']]), 'to have items satisfying', [
+            expect.it('to be a number').and('to be greater than', 0),
           ]);
         },
         'to throw',
-        "expected Set([ 1, 2, 'foo' ]) to have items satisfying [ 1, 'foo' ]\n" +
+        "expected Set([ [ 1 ], [ 2 ], [ 'foo' ] ]) to have items satisfying\n" +
+          '[\n' +
+          "  expect.it('to be a number')\n" +
+          "          .and('to be greater than', 0)\n" +
+          ']\n' +
           '\n' +
           'Set([\n' +
-          '  1,\n' +
-          '  2, // should be removed\n' +
-          "  'foo'\n" +
+          '  [ 1 ],\n' +
+          '  [ 2 ],\n' +
+          '  [\n' +
+          "    'foo' // ⨯ should be a number and\n" +
+          '          // ⨯ should be greater than 0\n' +
+          '  ]\n' +
           '])'
       );
     });
@@ -166,16 +174,6 @@ describe('unexpected-set', () => {
       expect(() => {
         expect(new Set([]), 'to have items satisfying to be a number');
       }, 'to throw');
-    });
-
-    describe('with a Set on the RHS', () => {
-      it('should succeed against Set', () => {
-        expect(
-          new Set([1, 2, 3]),
-          'to have items satisfying',
-          new Set([1, 2, 3])
-        );
-      });
     });
 
     describe('with a chained assertion on the RHS', () => {
