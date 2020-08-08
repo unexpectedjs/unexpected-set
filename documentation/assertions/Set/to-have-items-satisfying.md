@@ -15,7 +15,7 @@ Set([
 ```
 
 In order to check a property holds for all the items, an assertion can be
-passed as the argument - in this example we assert that all the items in
+passed as the argument – in this example we assert that all the items in
 the set are numbers:
 
 ```js
