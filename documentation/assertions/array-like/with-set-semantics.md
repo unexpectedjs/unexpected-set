@@ -6,19 +6,19 @@ accessible when you need to make assertions about an array without considering
 the order or duplicate items.
 
 ```js
-expect([3, 2, 1], 'with set semantics to satisfy', [1]);
+expect([3, 2, 1], 'with set semantics to satisfy', new Set([1, 2, 3]));
 ```
 
 ```js
-expect([3, 2, 1], 'with set semantics to exhaustively satisfy', [1]);
+expect([3, 2, 1], 'with set semantics to satisfy', new Set([1, 2]));
 ```
 
 ```output
-expected [ 3, 2, 1 ] with set semantics to exhaustively satisfy [ 1 ]
+expected [ 3, 2, 1 ] with set semantics to satisfy Set([ 1, 2 ])
 
 Set([
   3, // should be removed
-  2, // should be removed
+  2,
   1
 ])
 ```

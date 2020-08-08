@@ -2,41 +2,53 @@ Asserts that a Set instance has at least one element satisfying each given
 spec.
 
 ```js
-expect(new Set([1, 2, 3]), 'to satisfy', [
-  1,
-  expect.it('to be less than or equal to', 1),
-  expect.it('to be greater than', 10),
-]);
+expect(
+  new Set([1, 2, 3]),
+  'to satisfy',
+  new Set([
+    1,
+    expect.it('to be less than or equal to', 1),
+    expect.it('to be greater than', 10),
+  ])
+);
 ```
 
 ```output
 expected Set([ 1, 2, 3 ]) to satisfy
-[
+Set([
   1,
   expect.it('to be less than or equal to', 1),
   expect.it('to be greater than', 10)
-]
+])
 
 Set([
   1,
-  2,
-  3
+  2, // should be removed
+  3 // should be removed
   // missing: should be greater than 10
 ])
 ```
 
-If the subject should not contain additional elements, use the `exhaustively`
-flag:
+The exact number of elements in a Set must always be matched. However, nested
+objects are, be default, compared using "satisfy" semantics which allow missing
+properties. In order to enforce that all properties are present, the `exhaustively`
+flag can be used:
 
 ```js
-expect(new Set([1, 2]), 'to exhaustively satisfy', [2]);
+expect(
+  new Set([1, { foo: true, bar: false }]),
+  'to exhaustively satisfy',
+  new Set([1, { foo: true }])
+);
 ```
 
 ```output
-expected Set([ 1, 2 ]) to exhaustively satisfy [ 2 ]
+expected Set([ 1, { foo: true, bar: false } ])
+to exhaustively satisfy Set([ 1, { foo: true } ])
 
 Set([
-  1, // should be removed
-  2
+  1,
+  { foo: true, bar: false } // should be removed
+  // missing { foo: true }
 ])
 ```
