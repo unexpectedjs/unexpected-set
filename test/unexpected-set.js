@@ -176,7 +176,7 @@ describe('unexpected-set', () => {
       }, 'to throw');
     });
 
-    describe('with a chained assertion on the RHS', () => {
+    describe('with a compound assertion on the RHS', () => {
       it('should succeed', () => {
         expect(
           new Set([1, 2, 3]),
