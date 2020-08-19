@@ -50,9 +50,7 @@
   "peerDependencies": {
     "unexpected": "^10.37.4 || ^11.0.0-4"
   },
-  "dependencies": {
-    "es6-set": "^0.1.5"
-  },
+  "dependencies": {},
   "nyc": {
     "include": [
       "lib/**"

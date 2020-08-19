@@ -1,5 +1,3 @@
-require('es6-set/implement');
-
 const expect = require('unexpected')
   .clone()
   .use(require('../lib/unexpected-set'));
