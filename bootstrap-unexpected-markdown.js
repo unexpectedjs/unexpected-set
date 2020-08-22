@@ -2,5 +2,3 @@
 expect = require('unexpected').clone();
 expect.output.preferredWidth = 80;
 expect.use(require('./lib/unexpected-set'));
-
-require('es6-set/implement');
