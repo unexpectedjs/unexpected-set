@@ -1,14 +1,18 @@
 [
   {
+    "label": "with set semantics (array-like)",
+    "url": "/assertions/array-like/with-set-semantics/"
+  },
+  {
     "label": "to contain (Set)",
     "url": "/assertions/Set/to-contain/"
   },
   {
-    "label": "to satisfy (Set)",
-    "url": "/assertions/Set/to-satisfy/"
+    "label": "to have items satisfying (Set)",
+    "url": "/assertions/Set/to-have-items-satisfying/"
   },
   {
-    "label": "with set semantics (array-like)",
-    "url": "/assertions/array-like/with-set-semantics/"
+    "label": "to satisfy (Set)",
+    "url": "/assertions/Set/to-satisfy/"
   }
 ]
