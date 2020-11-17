@@ -353,4 +353,52 @@ describe('unexpected-set', () => {
       );
     });
   });
+
+  describe('to have size assertion', () => {
+    it('should succeed', () => {
+      expect(new Set([1, 2, 3]), 'to have size', 3);
+    });
+
+    it('should fail', () => {
+      expect(() => {
+        expect(new Set([1,2,3]), 'to have size', 2);
+      }, 'to throw', 'expected Set([ 1, 2, 3 ]) to have size 2');
+    });
+
+    describe('with the not flag', () => {
+      it('should succeed', () => {
+        expect(new Set([1, 2, 3]), 'not to have size', 2);
+      });
+
+      it('should fail', () => {
+        expect(() => {
+          expect(new Set([1, 2, 3]), 'not to have size', 3);
+        }, 'to throw', 'expected Set([ 1, 2, 3 ]) not to have size 3');
+      });
+    });
+  });
+
+  describe('to be empty assertion', () => {
+    it('should succeed', () => {
+      expect(new Set(), 'to be empty');
+    });
+
+    it('should fail', () => {
+      expect(() => {
+        expect(new Set([1,2,3]), 'to be empty');
+      }, 'to throw', 'expected Set([ 1, 2, 3 ]) to be empty');
+    });
+
+    describe('with the not flag', () => {
+      it('should succeed', () => {
+        expect(new Set([1, 2, 3]), 'not to be empty');
+      });
+
+      it('should fail', () => {
+        expect(() => {
+          expect(new Set(), 'not to be empty');
+        }, 'to throw', 'expected Set([]) not to be empty');
+      });
+    });
+  });
 });
