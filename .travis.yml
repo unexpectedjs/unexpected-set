@@ -12,15 +12,15 @@ node_js:
 matrix:
   include:
     - name: Lint
-      node_js: 12
+      node_js: 14
       env:
         - TARGET=lint
     - name: Coverage
-      node_js: 12
+      node_js: 14
       env:
         - TARGET=coverage
     - name: Documentation
-      node_js: 12
+      node_js: 14
       env:
         - TARGET=test-docs
 
