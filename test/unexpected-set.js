@@ -360,9 +360,13 @@ describe('unexpected-set', () => {
     });
 
     it('should fail', () => {
-      expect(() => {
-        expect(new Set([1,2,3]), 'to have size', 2);
-      }, 'to throw', 'expected Set([ 1, 2, 3 ]) to have size 2');
+      expect(
+        () => {
+          expect(new Set([1, 2, 3]), 'to have size', 2);
+        },
+        'to throw',
+        'expected Set([ 1, 2, 3 ]) to have size 2'
+      );
     });
 
     describe('with the not flag', () => {
@@ -371,9 +375,13 @@ describe('unexpected-set', () => {
       });
 
       it('should fail', () => {
-        expect(() => {
-          expect(new Set([1, 2, 3]), 'not to have size', 3);
-        }, 'to throw', 'expected Set([ 1, 2, 3 ]) not to have size 3');
+        expect(
+          () => {
+            expect(new Set([1, 2, 3]), 'not to have size', 3);
+          },
+          'to throw',
+          'expected Set([ 1, 2, 3 ]) not to have size 3'
+        );
       });
     });
   });
@@ -384,9 +392,13 @@ describe('unexpected-set', () => {
     });
 
     it('should fail', () => {
-      expect(() => {
-        expect(new Set([1,2,3]), 'to be empty');
-      }, 'to throw', 'expected Set([ 1, 2, 3 ]) to be empty');
+      expect(
+        () => {
+          expect(new Set([1, 2, 3]), 'to be empty');
+        },
+        'to throw',
+        'expected Set([ 1, 2, 3 ]) to be empty'
+      );
     });
 
     describe('with the not flag', () => {
@@ -395,9 +407,13 @@ describe('unexpected-set', () => {
       });
 
       it('should fail', () => {
-        expect(() => {
-          expect(new Set(), 'not to be empty');
-        }, 'to throw', 'expected Set([]) not to be empty');
+        expect(
+          () => {
+            expect(new Set(), 'not to be empty');
+          },
+          'to throw',
+          'expected Set([]) not to be empty'
+        );
       });
     });
   });
