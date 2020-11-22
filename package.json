@@ -30,7 +30,6 @@
   },
   "homepage": "https://unexpected.js.org/unexpected-set",
   "devDependencies": {
-    "coveralls": "^3.0.0",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-standard": "^16.0.0",
