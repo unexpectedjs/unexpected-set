@@ -11,7 +11,7 @@ expect(new Set([1, 2, 3]), 'to be empty');
 ```
 
 ```output
-expected Set([1, 2, 3]) to be empty
+expected Set([ 1, 2, 3 ]) to be empty
 ```
 
 The assertion can be negated using the `not` flag:
