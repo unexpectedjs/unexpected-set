@@ -204,6 +204,51 @@ describe('unexpected-set', () => {
     });
   });
 
+  describe('to have an item satisfying assertion', () => {
+    it('should succeed', () => {
+      expect(new Set([[1], [2], [3]]), 'to have an item satisfying', [
+        expect.it('to be a number').and('to be greater than', 2),
+      ]);
+    });
+
+    it('should fail with a diff', () => {
+      expect(
+        () => {
+          expect(new Set([[1], [2], ['foo']]), 'to have an item satisfying', [
+            expect.it('to be a number').and('to be greater than', 2),
+          ]);
+        },
+        'to throw',
+        "expected Set([ [ 1 ], [ 2 ], [ 'foo' ] ]) to have an item satisfying\n" +
+          '[\n' +
+          "  expect.it('to be a number')\n" +
+          "          .and('to be greater than', 2)\n" +
+          ']\n' +
+          '\n' +
+          'Set([\n' +
+          '  [\n' +
+          '    1 // ✓ should be a number and\n' +
+          '      // ⨯ should be greater than 2\n' +
+          '  ],\n' +
+          '  [\n' +
+          '    2 // ✓ should be a number and\n' +
+          '      // ⨯ should be greater than 2\n' +
+          '  ],\n' +
+          '  [\n' +
+          "    'foo' // ⨯ should be a number and\n" +
+          '          // ⨯ should be greater than 2\n' +
+          '  ]\n' +
+          '])'
+      );
+    });
+
+    it('should fail for the empty set', () => {
+      expect(() => {
+        expect(new Set([]), 'to have an item satisfying to be a number');
+      }, 'to throw');
+    });
+  });
+
   describe('to satisfy assertion', () => {
     describe('with a Set instance', () => {
       describe('against another Set instance', () => {
