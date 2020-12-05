@@ -205,7 +205,27 @@ describe('unexpected-set', () => {
   });
 
   describe('to have an item satisfying assertion', () => {
-    it('should succeed', () => {
+    it('should succeed with a primitive as the expected value', () => {
+      expect(new Set([1, 2, 3]), 'to have an item satisfying', 3);
+    });
+
+    it('should succeed with an expect.it as the expected value', () => {
+      expect(
+        new Set([1, 2, 3]),
+        'to have an item satisfying',
+        expect.it('to be a number').and('to be greater than', 2)
+      );
+    });
+
+    it('should succeed with an assertion as the expected value', () => {
+      expect(
+        new Set([1, 2, 3]),
+        'to have an item satisfying',
+        'to be a number'
+      );
+    });
+
+    it('should succeed with an array as the expected value', () => {
       expect(new Set([[1], [2], [3]]), 'to have an item satisfying', [
         expect.it('to be a number').and('to be greater than', 2),
       ]);
@@ -238,6 +258,27 @@ describe('unexpected-set', () => {
           "    'foo' // ⨯ should be a number and\n" +
           '          // ⨯ should be greater than 2\n' +
           '  ]\n' +
+          '])'
+      );
+    });
+
+    it('should fail with a non-inline diff', () => {
+      expect(
+        () => {
+          expect(
+            new Set(['foo']),
+            'to have an item satisfying',
+            expect.it('to equal', 'bar')
+          );
+        },
+        'to throw',
+        "expected Set([ 'foo' ]) to have an item satisfying expect.it('to equal', 'bar')\n" +
+          '\n' +
+          'Set([\n' +
+          "  'foo' // should equal 'bar'\n" +
+          '        //\n' +
+          '        // -foo\n' +
+          '        // +bar\n' +
           '])'
       );
     });
