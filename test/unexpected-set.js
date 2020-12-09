@@ -19,16 +19,16 @@ expect.addAssertion(
 );
 
 describe('unexpected-set', () => {
-  describe('Set type', () => {
+  describe('new Set type', () => {
     it('should inspect a Set instance correctly', () => {
-      expect(new Set([1, 2]), 'to inspect as', 'Set([ 1, 2 ])');
+      expect(new Set([1, 2]), 'to inspect as', 'new Set([ 1, 2 ])');
     });
 
     it('should diff two Set instances correctly', () => {
       expect(
         [new Set([1, 2]), new Set([2, 3])],
         'to produce a diff of',
-        'Set([\n' +
+        'new Set([\n' +
           '  1, // should be removed\n' +
           '  2\n' +
           '  // missing 3\n' +
@@ -75,9 +75,9 @@ describe('unexpected-set', () => {
           expect(new Set([1, 2, 3]), 'to contain', 4);
         },
         'to throw',
-        'expected Set([ 1, 2, 3 ]) to contain 4\n' +
+        'expected new Set([ 1, 2, 3 ]) to contain 4\n' +
           '\n' +
-          'Set([\n' +
+          'new Set([\n' +
           '  1,\n' +
           '  2,\n' +
           '  3\n' +
@@ -97,9 +97,9 @@ describe('unexpected-set', () => {
             expect(new Set([1, 2, 3]), 'not to contain', 2);
           },
           'to throw',
-          'expected Set([ 1, 2, 3 ]) not to contain 2\n' +
+          'expected new Set([ 1, 2, 3 ]) not to contain 2\n' +
             '\n' +
-            'Set([\n' +
+            'new Set([\n' +
             '  1,\n' +
             '  2, // should be removed\n' +
             '  3\n' +
@@ -124,9 +124,9 @@ describe('unexpected-set', () => {
           );
         },
         'to throw',
-        'expected [ 1, 2, 3 ] with set semantics to satisfy Set([ 1, 2, 4 ])\n' +
+        'expected [ 1, 2, 3 ] with set semantics to satisfy new Set([ 1, 2, 4 ])\n' +
           '\n' +
-          'Set([\n' +
+          'new Set([\n' +
           '  1,\n' +
           '  2,\n' +
           '  3 // should be removed\n' +
@@ -146,19 +146,18 @@ describe('unexpected-set', () => {
     it('should fail with a diff', () => {
       expect(
         () => {
-          expect(new Set([[1], [2], ['foo']]), 'to have items satisfying', [
+          expect(new Set([[2], ['foo']]), 'to have items satisfying', [
             expect.it('to be a number').and('to be greater than', 0),
           ]);
         },
         'to throw',
-        "expected Set([ [ 1 ], [ 2 ], [ 'foo' ] ]) to have items satisfying\n" +
+        "expected new Set([ [ 2 ], [ 'foo' ] ]) to have items satisfying\n" +
           '[\n' +
           "  expect.it('to be a number')\n" +
           "          .and('to be greater than', 0)\n" +
           ']\n' +
           '\n' +
-          'Set([\n' +
-          '  [ 1 ],\n' +
+          'new Set([\n' +
           '  [ 2 ],\n' +
           '  [\n' +
           "    'foo' // ⨯ should be a number and\n" +
@@ -192,9 +191,9 @@ describe('unexpected-set', () => {
             );
           },
           'to throw',
-          "expected Set([ 1, 2, 'foo' ]) to have items satisfying to be a number\n" +
+          "expected new Set([ 1, 2, 'foo' ]) to have items satisfying to be a number\n" +
             '\n' +
-            'Set([\n' +
+            'new Set([\n' +
             '  1,\n' +
             '  2,\n' +
             "  'foo' // should be a number\n" +
@@ -234,22 +233,18 @@ describe('unexpected-set', () => {
     it('should fail with a diff', () => {
       expect(
         () => {
-          expect(new Set([[1], [2], ['foo']]), 'to have an item satisfying', [
+          expect(new Set([[2], ['foo']]), 'to have an item satisfying', [
             expect.it('to be a number').and('to be greater than', 2),
           ]);
         },
         'to throw',
-        "expected Set([ [ 1 ], [ 2 ], [ 'foo' ] ]) to have an item satisfying\n" +
+        "expected new Set([ [ 2 ], [ 'foo' ] ]) to have an item satisfying\n" +
           '[\n' +
           "  expect.it('to be a number')\n" +
           "          .and('to be greater than', 2)\n" +
           ']\n' +
           '\n' +
-          'Set([\n' +
-          '  [\n' +
-          '    1 // ✓ should be a number and\n' +
-          '      // ⨯ should be greater than 2\n' +
-          '  ],\n' +
+          'new Set([\n' +
           '  [\n' +
           '    2 // ✓ should be a number and\n' +
           '      // ⨯ should be greater than 2\n' +
@@ -272,9 +267,9 @@ describe('unexpected-set', () => {
           );
         },
         'to throw',
-        "expected Set([ 'foo' ]) to have an item satisfying expect.it('to equal', 'bar')\n" +
+        "expected new Set([ 'foo' ]) to have an item satisfying expect.it('to equal', 'bar')\n" +
           '\n' +
-          'Set([\n' +
+          'new Set([\n' +
           "  'foo' // should equal 'bar'\n" +
           '        //\n' +
           '        // -foo\n' +
@@ -311,9 +306,9 @@ describe('unexpected-set', () => {
               expect(new Set([1, 2]), 'to satisfy', new Set([3]));
             },
             'to throw',
-            'expected Set([ 1, 2 ]) to satisfy Set([ 3 ])\n' +
+            'expected new Set([ 1, 2 ]) to satisfy new Set([ 3 ])\n' +
               '\n' +
-              'Set([\n' +
+              'new Set([\n' +
               '  1, // should be removed\n' +
               '  2 // should be removed\n' +
               '  // missing 3\n' +
@@ -327,9 +322,9 @@ describe('unexpected-set', () => {
               expect(new Set([1, 2]), 'to exhaustively satisfy', new Set([1]));
             },
             'to throw',
-            'expected Set([ 1, 2 ]) to exhaustively satisfy Set([ 1 ])\n' +
+            'expected new Set([ 1, 2 ]) to exhaustively satisfy new Set([ 1 ])\n' +
               '\n' +
-              'Set([\n' +
+              'new Set([\n' +
               '  1,\n' +
               '  2 // should be removed\n' +
               '])'
@@ -353,9 +348,9 @@ describe('unexpected-set', () => {
             expect(new Set([1]), 'to satisfy', new Set([1, 2]));
           },
           'to throw',
-          'expected Set([ 1 ]) to satisfy Set([ 1, 2 ])\n' +
+          'expected new Set([ 1 ]) to satisfy new Set([ 1, 2 ])\n' +
             '\n' +
-            'Set([\n' +
+            'new Set([\n' +
             '  1\n' +
             '  // missing 2\n' +
             '])'
@@ -372,9 +367,9 @@ describe('unexpected-set', () => {
             );
           },
           'to throw',
-          "expected Set([ 1 ]) to satisfy Set([ 1, expect.it('to equal', 2) ])\n" +
+          "expected new Set([ 1 ]) to satisfy new Set([ 1, expect.it('to equal', 2) ])\n" +
             '\n' +
-            'Set([\n' +
+            'new Set([\n' +
             '  1\n' +
             '  // missing: should equal 2\n' +
             '])'
@@ -451,7 +446,7 @@ describe('unexpected-set', () => {
           expect(new Set([1, 2, 3]), 'to have size', 2);
         },
         'to throw',
-        'expected Set([ 1, 2, 3 ]) to have size 2'
+        'expected new Set([ 1, 2, 3 ]) to have size 2'
       );
     });
 
@@ -466,7 +461,7 @@ describe('unexpected-set', () => {
             expect(new Set([1, 2, 3]), 'not to have size', 3);
           },
           'to throw',
-          'expected Set([ 1, 2, 3 ]) not to have size 3'
+          'expected new Set([ 1, 2, 3 ]) not to have size 3'
         );
       });
     });
@@ -483,7 +478,7 @@ describe('unexpected-set', () => {
           expect(new Set([1, 2, 3]), 'to be empty');
         },
         'to throw',
-        'expected Set([ 1, 2, 3 ]) to be empty'
+        'expected new Set([ 1, 2, 3 ]) to be empty'
       );
     });
 
@@ -498,7 +493,7 @@ describe('unexpected-set', () => {
             expect(new Set(), 'not to be empty');
           },
           'to throw',
-          'expected Set([]) not to be empty'
+          'expected new Set([]) not to be empty'
         );
       });
     });
