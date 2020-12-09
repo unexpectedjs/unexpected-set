@@ -1,6 +1,6 @@
 {
   "name": "unexpected-set",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Add support to Unexpected for testing Set instances",
   "main": "lib/unexpected-set.js",
   "scripts": {
