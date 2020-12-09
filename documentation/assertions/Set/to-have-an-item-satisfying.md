@@ -5,9 +5,9 @@ expect(new Set([1, 2, 3]), 'to have an item satisfying', 4);
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) to have an item satisfying 4
+expected new Set([ 1, 2, 3 ]) to have an item satisfying 4
 
-Set([
+new Set([
   1, // should equal 4
   2, // should equal 4
   3 // should equal 4
@@ -27,9 +27,9 @@ expect(
 ```
 
 ```output
-expected Set([ 'a', false, [] ]) to have an item satisfying to be a number
+expected new Set([ 'a', false, [] ]) to have an item satisfying to be a number
 
-Set([
+new Set([
   'a', // should be a number
   false, // should be a number
   [] // should be a number

@@ -17,9 +17,9 @@ expect(new Set([1, 2, 3]), 'to satisfy', new Set([1, 2, 3, 4]));
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) to satisfy Set([ 1, 2, 3, 4 ])
+expected new Set([ 1, 2, 3 ]) to satisfy new Set([ 1, 2, 3, 4 ])
 
-Set([
+new Set([
   1,
   2,
   3

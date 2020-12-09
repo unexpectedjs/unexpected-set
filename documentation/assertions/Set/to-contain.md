@@ -11,9 +11,9 @@ expect(new Set([1, 2, 3]), 'to contain', 4);
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) to contain 4
+expected new Set([ 1, 2, 3 ]) to contain 4
 
-Set([
+new Set([
   1,
   2,
   3
@@ -32,9 +32,9 @@ expect(new Set([1, 2, 3]), 'not to contain', 3);
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) not to contain 3
+expected new Set([ 1, 2, 3 ]) not to contain 3
 
-Set([
+new Set([
   1,
   2,
   3 // should be removed

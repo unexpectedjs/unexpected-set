@@ -14,9 +14,9 @@ expect([3, 2, 1], 'with set semantics to satisfy', new Set([1, 2]));
 ```
 
 ```output
-expected [ 3, 2, 1 ] with set semantics to satisfy Set([ 1, 2 ])
+expected [ 3, 2, 1 ] with set semantics to satisfy new Set([ 1, 2 ])
 
-Set([
+new Set([
   3, // should be removed
   2,
   1

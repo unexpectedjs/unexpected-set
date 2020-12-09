@@ -14,14 +14,14 @@ expect(
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) to satisfy
-Set([
+expected new Set([ 1, 2, 3 ]) to satisfy
+new Set([
   1,
   expect.it('to be less than or equal to', 1),
   expect.it('to be greater than', 10)
 ])
 
-Set([
+new Set([
   1,
   2, // should be removed
   3 // should be removed
@@ -43,10 +43,10 @@ expect(
 ```
 
 ```output
-expected Set([ 1, { foo: true, bar: false } ])
-to exhaustively satisfy Set([ 1, { foo: true } ])
+expected new Set([ 1, { foo: true, bar: false } ])
+to exhaustively satisfy new Set([ 1, { foo: true } ])
 
-Set([
+new Set([
   1,
   { foo: true, bar: false } // should be removed
   // missing { foo: true }

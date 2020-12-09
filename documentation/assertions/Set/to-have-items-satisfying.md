@@ -5,9 +5,9 @@ expect(new Set([1, 2, 3]), 'to have items satisfying', [1, { foo: 'bar' }, 3]);
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) to have items satisfying [ 1, { foo: 'bar' }, 3 ]
+expected new Set([ 1, 2, 3 ]) to have items satisfying [ 1, { foo: 'bar' }, 3 ]
 
-Set([
+new Set([
   1, // should equal [ 1, { foo: 'bar' }, 3 ]
   2, // should equal [ 1, { foo: 'bar' }, 3 ]
   3 // should equal [ 1, { foo: 'bar' }, 3 ]
@@ -23,9 +23,9 @@ expect(new Set([1, 2, []]), 'to have items satisfying', 'to be a number');
 ```
 
 ```output
-expected Set([ 1, 2, [] ]) to have items satisfying to be a number
+expected new Set([ 1, 2, [] ]) to have items satisfying to be a number
 
-Set([
+new Set([
   1,
   2,
   [] // should be a number
@@ -46,7 +46,7 @@ expect(new Set([[{ foo: true, bar: true }], [1]]), 'to have items satisfying', [
 ```output
 expected Set to have items satisfying [ expect.it('to be an object') ]
 
-Set([
+new Set([
   [ { foo: true, bar: true } ],
   [
     1 // should be an object

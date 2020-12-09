@@ -11,7 +11,7 @@ expect(new Set([1, 2, 3]), 'to have size', 4);
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) to have size 4
+expected new Set([ 1, 2, 3 ]) to have size 4
 ```
 
 The assertion can be negated using the `not` flag:
@@ -27,5 +27,5 @@ expect(new Set([1, 2, 3]), 'not to have size', 3);
 ```
 
 ```output
-expected Set([ 1, 2, 3 ]) not to have size 3
+expected new Set([ 1, 2, 3 ]) not to have size 3
 ```
